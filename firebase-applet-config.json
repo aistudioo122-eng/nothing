@@ -1,10 +1,10 @@
 {
-  "projectId": "your-project-id",
-  "appId": "1:000000000000:web:0000000000000000000000",
-  "apiKey": "AIzaSy-PLACEHOLDER-KEY-DO-NOT-USE",
-  "authDomain": "your-project.firebaseapp.com",
-  "firestoreDatabaseId": "(default)",
-  "storageBucket": "your-project.firebasestorage.app",
-  "messagingSenderId": "000000000000",
-  "measurementId": "G-XXXXXXXXXX"
-}
+  "projectId": "royal-crust-final",
+  "appId": "1:201293676198:web:75b121a92111f1b2b0be67",
+  "apiKey": "AIzaSyBb4B7KhWiflc7xpWLTwy02LdQ-7I7jSOI",
+  "authDomain": "royal-crust-final.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "royal-crust-final.firebasestorage.app",
+  "messagingSenderId": "201293676198",
+  "measurementId": "G-LJTFGBE3K6"
+} 
