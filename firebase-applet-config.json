@@ -1,10 +1,9 @@
 {
-  "projectId": "royal-crust-final",
-  "appId": "1:201293676198:web:75b121a92111f1b2b0be67",
-  "apiKey": "AIzaSyBb4B7KhWiflc7xpWLTwy02LdQ-7I7jSOI",
-  "authDomain": "royal-crust-final.firebaseapp.com",
-  "firestoreDatabaseId": "(default)",
-  "storageBucket": "royal-crust-final.firebasestorage.app",
-  "messagingSenderId": "201293676198",
-  "measurementId": "G-LJTFGBE3K6"
-} 
+  "apiKey": "AIzaSyD9HiOYPyF463dcAocYw-iQM-m7LePwwa0",
+  "authDomain": "thing-e0754.firebaseapp.com",
+  "projectId": "thing-e0754",
+  "storageBucket": "thing-e0754.firebasestorage.app",
+  "messagingSenderId": "785618642487",
+  "appId": "1:785618642487:web:5105c5df3e259086e041b2",
+  "measurementId": "G-FHS9X4T6BZ"
+}
