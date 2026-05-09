@@ -1,0 +1,90 @@
+{
+  "entities": {
+    "Category": {
+      "title": "Category",
+      "description": "Product categories for filtering",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Category name" },
+        "icon": { "type": "string", "description": "Lucide icon name" },
+        "type": { "type": "string", "enum": ["flavor", "occasion"], "description": "Filter type" }
+      },
+      "required": ["name", "icon", "type"]
+    },
+    "Cake": {
+      "title": "Cake",
+      "description": "Cake product details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "image": { "type": "string" },
+        "basePrice": { "type": "number" },
+        "flavor": { "type": "string" },
+        "occasion": { "type": "string" },
+        "description": { "type": "string" },
+        "available": { "type": "boolean" }
+      },
+      "required": ["name", "image", "basePrice", "flavor", "occasion"]
+    },
+    "Option": {
+      "title": "Option",
+      "description": "Customization options (butter, frosting, toppings)",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "number" },
+        "type": { "type": "string", "enum": ["butter", "frosting", "topping", "time"], "description": "Option category" }
+      },
+      "required": ["name", "price", "type"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Global app settings and branding",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string", "description": "The name of the business" },
+        "tagline": { "type": "string", "description": "Business tagline" },
+        "loadingSubtext": { "type": "string", "description": "Text displayed during preloading" },
+        "logoUrl": { "type": "string", "description": "URL of the logo image" },
+        "heroImageUrl": { "type": "string", "description": "Main banner image URL" },
+        "aboutHeading": { "type": "string", "description": "Heading for the story section" },
+        "aboutDescription1": { "type": "string", "description": "First paragraph of the story" },
+        "aboutDescription2": { "type": "string", "description": "Second paragraph of the story" },
+        "aboutDescription3": { "type": "string", "description": "Third paragraph of the story" },
+        "aboutImageUrl": { "type": "string", "description": "Image for the story section" },
+        "whatsappNumber": { "type": "string" },
+        "shopStatus": { "type": "string", "enum": ["open", "closed"] },
+        "address": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "instagramUrl": { "type": "string" },
+        "facebookUrl": { "type": "string" },
+        "deliveredCakes": { "type": "number", "description": "Number of cakes delivered for stats" },
+        "happyCustomers": { "type": "number", "description": "Number of happy customers for stats" },
+        "customDesigns": { "type": "number", "description": "Number of custom designs for stats" },
+        "qualityRating": { "type": "number", "description": "Quality rating percentage" },
+        "currencySymbol": { "type": "string", "description": "The currency symbol to display (e.g., $, ₹, NPR)" },
+        "primaryColor": { "type": "string", "description": "The main brand color (e.g., #d4af37)" },
+        "secondaryColor": { "type": "string", "description": "The secondary brand color (e.g., #5d4037)" }
+      }
+    }
+  },
+  "firestore": {
+    "/categories/{categoryId}": {
+      "schema": "Category",
+      "description": "Categories for cakes"
+    },
+    "/cakes/{cakeId}": {
+      "schema": "Cake",
+      "description": "Cake products"
+    },
+    "/options/{optionId}": {
+      "schema": "Option",
+      "description": "Customization options"
+    },
+    "/settings/global": {
+      "schema": "Settings",
+      "description": "Global configuration"
+    }
+  }
+}

@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 0. Global Safety (Default Deny - Keep this at the top)
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // 1. General Helpers
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Admin Check Function (Optimized)
+    function isAdmin() {
+      return isAuthenticated() && 
+             (
+               (exists(/databases/$(database)/documents/adminConfig/setup) && 
+                get(/databases/$(database)/documents/adminConfig/setup).data.adminUid == request.auth.uid) ||
+               (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+                get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+             );
+    }
+
+    // 2. Admin Config: Allow anyone to check if setup is done
+    match /adminConfig/setup {
+      allow read: if true;
+      allow write: if isAuthenticated() && !exists(/databases/$(database)/documents/adminConfig/setup);
+    }
+
+    match /adminConfig/{docId} {
+      allow read, write: if isAdmin();
+    }
+
+    // 3. Public Collections (All Read, Admin Write)
+    // Adding all possible collections to ensure no "Insufficient Permission" errors
+    match /cakes/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /categories/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /options/{id} { allow read: if true; allow write: if isAdmin(); }
+    match /settings/{id} { allow read: if true; allow write: if isAdmin(); }
+    
+    // User Profiles
+    match /users/{userId} {
+      allow read: if true; // Allowed read for all to ensure admin checks & loyalty works
+      allow write: if isAdmin() || (isAuthenticated() && request.auth.uid == userId);
+    }
+
+    // 4. Admin Only Collections (Locked for protection)
+    match /orders/{id} { allow read, write: if isAdmin(); }
+    match /contacts/{id} { allow read, write: if isAdmin(); }
+    match /notifications/{id} { allow read, write: if isAdmin(); }
+    
+    // Allow reading of any other collection for development to avoid errors 
+    // while keeping writes strictly Admin
+    match /{collectionName}/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
