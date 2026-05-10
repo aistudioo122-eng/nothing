@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-royal-gold: var(--primary-brand);
+  --color-chocolate-brown: var(--secondary-brand);
+  --color-dark-brown: var(--secondary-brand);
+  --color-cream-white: var(--bg-primary);
+  --color-soft-pink: #f9e4e8;
+  --color-light-gold: #f5e8c8;
+  --color-gold-glow: rgba(var(--primary-brand-rgb), 0.5);
+  
+  --color-surface: var(--bg-secondary);
+  --color-base: var(--bg-primary);
+  --color-muted: var(--text-muted);
+  --color-heading: var(--text-primary);
+  --color-border-color: var(--border-color);
+}
+
+@layer base {
+  :root {
+    --primary-brand: #d4af37;
+    --secondary-brand: #3c2f2f;
+    --primary-brand-rgb: 212, 175, 55;
+    --bg-primary: #fdfbf7;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f9f6f0;
+    --text-primary: #2c1810;
+    --text-secondary: #5d4037;
+    --text-muted: #8d7e78;
+    --border-color: rgba(60, 47, 47, 0.1);
+  }
+  
+  .dark {
+    --bg-primary: #0f0a07;
+    --bg-secondary: #1a120b;
+    --bg-tertiary: #1f160e;
+    --text-primary: #fdfbf7;
+    --text-secondary: #d4af37;
+    --text-muted: #a89a94;
+    --border-color: rgba(212, 175, 55, 0.1);
+  }
+
+  body {
+    @apply font-sans antialiased scroll-smooth transition-colors duration-500;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    cursor: none;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif font-bold tracking-tight;
+  }
+  
+  /* Custom Cursor Styles */
+  .cursor-dot {
+    @apply fixed top-0 left-0 w-2 h-2 bg-royal-gold rounded-full pointer-events-none z-[10001] transition-transform duration-100 ease-out;
+  }
+  .cursor-outline {
+    @apply fixed top-0 left-0 w-10 h-10 border-2 border-royal-gold/30 rounded-full pointer-events-none z-[10000] transition-all duration-300 ease-out;
+  }
+}
+
+@layer utilities {
+  .glass-bg {
+    @apply bg-base/80 backdrop-blur-xl border-b border-border-color;
+  }
+  .shadow-soft {
+    @apply shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)];
+  }
+  .shadow-premium {
+    @apply shadow-[0_20px_50px_rgba(212,175,55,0.25)];
+  }
+  
+  .shiny-btn {
+    @apply relative overflow-hidden transition-all duration-500;
+  }
+  
+  .shiny-btn::after {
+    content: '';
+    @apply absolute top-[-50%] left-[-50%] w-[200%] h-[200%] bg-gradient-to-br from-transparent via-white/40 to-transparent rotate-45 translate-x-[-100%] transition-transform duration-1000;
+  }
+  
+  .shiny-btn:hover::after {
+    @apply translate-x-[100%];
+  }
+
+  .gold-gradient {
+    @apply bg-gradient-to-br from-royal-gold via-light-gold to-chocolate-brown;
+  }
+
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-royal-gold via-light-gold to-chocolate-brown bg-clip-text text-transparent;
+  }
+
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseCrown {
+  0%, 100% { transform: scale(1); opacity: 1; filter: drop-shadow(0 0 0px var(--color-royal-gold)); }
+  50% { transform: scale(1.15); opacity: 0.8; filter: drop-shadow(0 0 15px var(--color-royal-gold)); }
+}
+
+@keyframes morph {
+  0%, 100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: rotate(0deg); }
+  50% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: rotate(5deg); scale: 1.05; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-25px) rotate(2deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--secondary-brand) 0%, var(--primary-brand) 50%, var(--secondary-brand) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--primary-brand);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-brand);
+}
