@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore, connectFirestoreEmulator, enableNetwork } from 'firebase/firestore';
+import { getFirestore, enableNetwork, doc, getDoc } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
@@ -12,11 +12,12 @@ enableNetwork(db).catch((error) => {
   console.warn('Failed to enable network:', error);
 });
 
-// Test connection
+// Test connection with correct Firestore syntax
 async function testConnection() {
   try {
-    // Simple ping to verify connection
-    const testDoc = await db.collection('_test').doc('connection').get();
+    // Use correct Firebase v9+ syntax
+    const testDocRef = doc(db, '_test', 'connection');
+    const testDoc = await getDoc(testDocRef);
     console.log('✓ Firebase connection successful');
   } catch (error) {
     if (error instanceof Error) {
