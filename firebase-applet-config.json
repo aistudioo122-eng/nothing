@@ -1,8 +1,10 @@
 {
-  "apiKey": "AIzaSyCxDZdqCYm1WM1kmz7LCof2qhkU-o8ygJQ",
-  "authDomain": "cake-1f3ba.firebaseapp.com",
-  "projectId": "cake-1f3ba",
-  "storageBucket": "cake-1f3ba.firebasestorage.app",
-  "messagingSenderId": "269309969999",
-  "appId": "1:269309969999:web:f2d4b049c94f1434858c3a"
+  "projectId": "caje-5f7ce",
+  "appId": "1:34062174817:web:40ff1a8ae47d0038e43820",
+  "apiKey": "AIzaSyCK0wyqt3Ogf7WOFzxI6ErtpUuaFY0ijYM",
+  "authDomain": "caje-5f7ce.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "caje-5f7ce.firebasestorage.app",
+  "messagingSenderId": "34062174817",
+  "measurementId": "G-EE892QZLJ4"
 }
